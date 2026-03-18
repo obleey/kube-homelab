@@ -3,6 +3,11 @@ kind: Application
 metadata:
   name: prowlarr
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: "#deployments"
+    notifications.argoproj.io/subscribe.on-health-degraded.slack: "#deployments"
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: "#deployments"
+
 spec:
   project: default
   source:
