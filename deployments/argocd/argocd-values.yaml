@@ -39,7 +39,7 @@ notifications:
 
   subscriptions:
     - recipients:
-        - slack:#your-channel
+        - slack:#deployments
       triggers:
         - on-sync-failed
         - on-health-degraded
