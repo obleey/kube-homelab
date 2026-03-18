@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: servarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      containers:
+        - name: qbittorrent
+          image: lscr.io/linuxserver/qbittorrent:latest
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Europe/Ljubljana"
+            - name: WEBUI_PORT
+              value: "8080"
+            - name: TORRENTING_PORT
+              value: "6881"
+
+          ports:
+            - containerPort: 8080
+            - containerPort: 6881
+              protocol: TCP
+            - containerPort: 6881
+              protocol: UDP
+
+          volumeMounts:
+            - name: qb-data
+              mountPath: /config
+            - name: servarr-data
+              mountPath: /data/torrents
+              subPath: torrents
+
+      volumes:
+        - name: qb-data
+          persistentVolumeClaim:
+            claimName: qb-data
+
+        - name: servarr-data
+          persistentVolumeClaim:
+            claimName: servarr-data

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  namespace: servarr
+  labels:
+    app: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+        - name: sonarr
+          image: lscr.io/linuxserver/sonarr:latest
+          envFrom:
+            - configMapRef:
+                name: sonarr-config
+          ports:
+            - containerPort: 8989
+              name: sonarr-port
+          volumeMounts:
+            - name: sonarr-config
+              mountPath: /config
+            - name: servarr-data
+              mountPath: /data
+      volumes:
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-data
+        - name: servarr-data
+          persistentVolumeClaim:
+            claimName: servarr-data
