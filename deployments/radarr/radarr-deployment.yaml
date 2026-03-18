@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  namespace: servarr
+  labels:
+    app: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      containers:
+        - name: radarr
+          image: lscr.io/linuxserver/radarr:latest
+          envFrom:
+            - configMapRef:
+                name: radarr-config
+          ports:
+            - containerPort: 7878
+          volumeMounts:
+            - name: radarr-config
+              mountPath: /config
+            - name: servarr-data
+              mountPath: /data
+      volumes:
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-data
+        - name: servarr-data
+          persistentVolumeClaim:
+            claimName: servarr-data
