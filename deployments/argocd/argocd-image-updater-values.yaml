@@ -4,12 +4,11 @@ config:
     serverAddress: https://argocd-server.argocd.svc.cluster.local
     insecure: true
   gitCommitUser: obleey
-  gitCommitEmail: your@email.com
+  gitCommitEmail: miha.oblishar@gmail.com
   registries:
-    - name: lscr.io
+    - name: LinuxServer
       prefix: lscr.io
+      api_url: https://lscr.io
       ping: true
       insecure: false
-
-authScripts:
-  enabled: false
+      defaultns: linuxserver
