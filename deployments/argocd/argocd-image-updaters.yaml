@@ -13,13 +13,17 @@ spec:
   applicationRefs:
     - namePattern: sonarr
       images:
-        - image: lscr.io/linuxserver/sonarr
+        - alias: sonarr
+          imageName: lscr.io/linuxserver/sonarr
     - namePattern: prowlarr
       images:
-        - image: lscr.io/linuxserver/prowlarr
+        - alias: prowlarr
+          imageName: lscr.io/linuxserver/prowlarr
     - namePattern: jellyfin
       images:
-        - image: lscr.io/linuxserver/jellyfin
+        - alias: jellyfin
+          imageName: lscr.io/linuxserver/jellyfin
     - namePattern: qbittorrent
       images:
-        - image: lscr.io/linuxserver/qbittorrent
+        - alias: qbittorrent
+          imageName: lscr.io/linuxserver/qbittorrent
