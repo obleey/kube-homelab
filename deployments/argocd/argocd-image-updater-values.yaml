@@ -3,10 +3,13 @@ config:
     grpcWeb: true
     serverAddress: https://argocd-server.argocd.svc.cluster.local
     insecure: true
+  gitCommitUser: obleey
+  gitCommitEmail: your@email.com
+  registries:
+    - name: lscr.io
+      prefix: lscr.io
+      ping: true
+      insecure: false
 
-credentials:
-  - registry: lscr.io
-    username: anonymous
-    passwordSecret:
-      name: ""
-      key: ""
+authScripts:
+  enabled: false
