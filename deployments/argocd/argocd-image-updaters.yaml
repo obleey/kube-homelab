@@ -4,7 +4,9 @@ metadata:
   name: sonarr
   namespace: argocd
 spec:
-  appName: sonarr
+  applicationRefs:
+    - name: sonarr
+      namespace: argocd
   images:
     - image: lscr.io/linuxserver/sonarr
       strategy: latest
@@ -19,7 +21,9 @@ metadata:
   name: prowlarr
   namespace: argocd
 spec:
-  appName: prowlarr
+  applicationRefs:
+    - name: prowlarr
+      namespace: argocd
   images:
     - image: lscr.io/linuxserver/prowlarr
       strategy: latest
@@ -34,7 +38,9 @@ metadata:
   name: jellyfin
   namespace: argocd
 spec:
-  appName: jellyfin
+  applicationRefs:
+    - name: jellyfin
+      namespace: argocd
   images:
     - image: lscr.io/linuxserver/jellyfin
       strategy: latest
@@ -49,7 +55,9 @@ metadata:
   name: qbittorrent
   namespace: argocd
 spec:
-  appName: qbittorrent
+  applicationRefs:
+    - name: qbittorrent
+      namespace: argocd
   images:
     - image: lscr.io/linuxserver/qbittorrent
       strategy: latest
