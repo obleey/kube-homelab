@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seerr
+  namespace: servarr
+  labels:
+    app: seerr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seerr
+  template:
+    metadata:
+      labels:
+        app: seerr
+    spec:
+      containers:
+        - name: seerr
+          image: lscr.io/linuxserver/overseerr:latest
+          envFrom:
+            - configMapRef:
+                name: seerr-config
+          ports:
+            - containerPort: 5055
+          volumeMounts:
+            - name: seerr-config
+              mountPath: /config
+      volumes:
+        - name: seerr-config
+          persistentVolumeClaim:
+            claimName: seerr-data

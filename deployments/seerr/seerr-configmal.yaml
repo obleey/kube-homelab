@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seerr-config
+  namespace: servarr
+data:
+  TZ: "Europe/Ljubljana"
