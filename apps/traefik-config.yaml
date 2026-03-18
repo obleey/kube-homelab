@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: qbittorrent
+  name: traefik-config
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/obleey/kube-homelab
     targetRevision: HEAD
-    path: deployments/qbittorrent
+    path: deployments/traefik
+    directory:
+      exclude: traefik-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: servarr
+    namespace: traefik
   syncPolicy:
     automated:
       prune: true
