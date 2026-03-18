@@ -1,67 +1,25 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
-  name: sonarr
+  name: servarr-apps
   namespace: argocd
 spec:
+  commonUpdateSettings:
+    updateStrategy: latest
+  writeBackConfig:
+    method: git
+    git:
+      branch: main
   applicationRefs:
-    - name: sonarr
-      namespace: argocd
-  images:
-    - image: lscr.io/linuxserver/sonarr
-      strategy: latest
-      writeBack:
-        method: git
-        git:
-          branch: main
----
-apiVersion: argocd-image-updater.argoproj.io/v1alpha1
-kind: ImageUpdater
-metadata:
-  name: prowlarr
-  namespace: argocd
-spec:
-  applicationRefs:
-    - name: prowlarr
-      namespace: argocd
-  images:
-    - image: lscr.io/linuxserver/prowlarr
-      strategy: latest
-      writeBack:
-        method: git
-        git:
-          branch: main
----
-apiVersion: argocd-image-updater.argoproj.io/v1alpha1
-kind: ImageUpdater
-metadata:
-  name: jellyfin
-  namespace: argocd
-spec:
-  applicationRefs:
-    - name: jellyfin
-      namespace: argocd
-  images:
-    - image: lscr.io/linuxserver/jellyfin
-      strategy: latest
-      writeBack:
-        method: git
-        git:
-          branch: main
----
-apiVersion: argocd-image-updater.argoproj.io/v1alpha1
-kind: ImageUpdater
-metadata:
-  name: qbittorrent
-  namespace: argocd
-spec:
-  applicationRefs:
-    - name: qbittorrent
-      namespace: argocd
-  images:
-    - image: lscr.io/linuxserver/qbittorrent
-      strategy: latest
-      writeBack:
-        method: git
-        git:
-          branch: main
+    - namePattern: sonarr
+      images:
+        - image: lscr.io/linuxserver/sonarr
+    - namePattern: prowlarr
+      images:
+        - image: lscr.io/linuxserver/prowlarr
+    - namePattern: jellyfin
+      images:
+        - image: lscr.io/linuxserver/jellyfin
+    - namePattern: qbittorrent
+      images:
+        - image: lscr.io/linuxserver/qbittorrent
