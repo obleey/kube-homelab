@@ -16,7 +16,7 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       nodeSelector:
-        kubernetes.io/hostname: k3s-server-1
+        kubernetes.io/hostname: k3s-server-3
       containers:
         - name: jellyfin
           image: lscr.io/linuxserver/jellyfin:latest
