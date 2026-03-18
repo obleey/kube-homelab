@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sonarr
-          image: lscr.io/linuxserver/sonarr:latest
+          image: lscr.io/linuxserver/sonarr:12312342342
           envFrom:
             - configMapRef:
                 name: sonarr-config
